@@ -4,10 +4,23 @@ def open_file():
 
         file_contents = f.read()
 
-    print(file_contents)
+    return file_contents
+
+def count_words(file_contents):
+    
+    count = 0
+    string_words = str(file_contents)
+    split_words = string_words.split()
+
+    for x in split_words:
+        count += 1
+
+    print (count)
+
 
 def main():
 
-    open_file()
+    f = open_file()
+    count_words(f)
 
 main()
