@@ -35,21 +35,40 @@ def count_characters(file_contents):
         if x in char_dict:
 
             char_dict[x] += 1
-    print (char_dict)
     return char_dict
+
+def sort_on(d):
+    return d["num"]
 
 def dict_to_list(char_dict):
 
-    my_dict = char_dict
-    print (my_dict)
+    sorted_list = []
+    for x in char_dict:
+        sorted_list.append({"char": x, "num": char_dict[x]})
+    sorted_list.sort(reverse=True, key=sort_on)
+
+    return sorted_list
 
 
 
 
 def main():
 
+    book_path = "books/frankenstein.txt"
     f = open_file()
-    count_characters(f)
-    dict_to_list(count_characters(f))
+    char_dict = count_characters(f)
+    sorted_list = dict_to_list(char_dict)
+
+
+
+    print (f"--- Begin report of {book_path} ---")
+    count_words(f)
+    print()
+
+    for item in sorted_list:
+
+        if not item['char'].isalpha():
+            continue
+        print(f"The '{item['char']}' character was found {item['num']} times")
 
 main()
